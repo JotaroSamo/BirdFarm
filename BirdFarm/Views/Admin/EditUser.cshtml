@@ -1,0 +1,54 @@
+﻿@model BirdFarm.ModelsBD.User
+@{
+    ViewData["Title"] = "Edit";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/Home.css" rel="stylesheet" />
+    <link href="~/css/Auth.css" rel="stylesheet" />
+    <title>Edit User</title>
+</head>
+<body class="back">
+    <header class="header_up">
+        <a class="logout-button" asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
+    </header>
+    <form asp-controller="Admin" asp-action="UpdateUser" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div>
+            <label asp-for="Email">Email:</label>
+            <input asp-for="Email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div>
+            <label asp-for="Password">Password:</label>
+            <input asp-for="Password" />
+            <span asp-validation-for="Password"></span>
+        </div>
+        @if (User.IsInRole("Admin"))
+        {
+            <div>
+                <label asp-for="Role">Role:</label>
+                <select asp-for="Role">
+                    <option value=@Model.Role>@Model.Role.ToString()</option>
+                    @if (Model.Role.ToString()=="Admin")
+                    {
+                        <option value="0">User</option>
+                    }
+                    else
+                    {
+                        <option value="1">Admin</option>
+                    }
+                  
+                </select>
+                <span asp-validation-for="Role"></span>
+            </div>
+        }
+       
+        <input type="submit" value="Save">
+    </form>
+</body>
+</html>

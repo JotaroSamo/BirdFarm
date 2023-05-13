@@ -1,0 +1,66 @@
+﻿@using BirdFarm.ModelsBD;
+@using Microsoft.AspNetCore.Http;
+@using Microsoft.AspNetCore.Mvc.TagHelpers;
+@model List<Egg>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link href="~/css/Home.css" rel="stylesheet" />
+    <link href="~/css/Table.css" rel="stylesheet" />
+</head>
+<body class="back">
+    <header class="header_up">
+        <a class="logout-button" asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
+    </header>
+    <br />
+
+    <table>
+        <thead>
+            <tr>
+                <th>Egg ID</th>
+                <th>Bird ID</th>
+                <th>Egg Type</th>
+                <th>Egg Color</th>
+                <th>Count Eggs</th>
+                <th>Price</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var egg in Model)
+            {
+                <tr>
+                    <td>@egg.EggID</td>
+                    <td>@egg.EggType</td>
+                    <td>@egg.EggColor</td>
+                    <td>@egg.CountEggs</td>
+                    <td>@egg.Price</td>
+                    <td>
+                        <form asp-controller="Admin" asp-action="EggsDeletet" method="get">
+                            <input type="hidden" name="id" value="@egg.EggID" />
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+
+                    </td>
+                    <td>
+                        <form asp-controller="Admin" asp-action="EditEgg" method="post">
+                            <input type="hidden" name="id" value="@egg.EggID" />
+                            <button type="submit" class="btn btn-primary">Edit</button>
+                        </form>
+                    </td>
+                   @* <td>
+
+                        <form asp-area="" asp-controller="UserWork" asp-action="AllRecord" method="get">
+                            <input type="hidden" name="UserId" value="@egg.EggID" />
+                            <button type="submit" class="btn btn-primary">List Record</button>
+                        </form>
+                    </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

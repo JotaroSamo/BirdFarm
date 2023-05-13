@@ -1,0 +1,57 @@
+﻿@using BirdFarm.ModelsBD;
+@model List<User>;
+@{ViewData["Title"] = "User List";}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+    <link href="~/css/Home.css" rel="stylesheet" />
+    <link href="~/css/Table.css" rel="stylesheet" />
+</head>
+<body class="back">
+    <header class="header_up">
+        <a class="logout-button" asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
+    </header>
+    <br />
+   
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions Delete</th>
+                      <th>Actions Edit</th>
+                      <th>Actions View Records</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.Email</td>
+                        <td>@user.Role</td>
+                        <td>
+                            <form asp-controller="Admin" asp-action="Delete" method="post">
+                                <input type="hidden" name="id" value="@user.Id" />
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                      
+                        </td>
+                        <td>
+                        <form asp-controller="Admin" asp-action="EditUser" method="post">
+                            <input type="hidden" name="id" value="@user.Id" />
+                            <button type="submit" class="btn btn-primary">Edit</button>
+                        </form>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+</body>
+</html>
+

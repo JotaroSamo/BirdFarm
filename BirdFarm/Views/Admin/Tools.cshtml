@@ -1,0 +1,33 @@
+﻿@{ViewData["Title"] = "Admin Tools";}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin tools</title>
+    <link href="~/css/Home.css" rel="stylesheet"/>
+    <link href="~/css/Admin.css" rel="stylesheet" />
+</head>
+<body class="back">
+    <header class="header_up">
+        <a class="logout-button" asp-area=""  asp-controller="Home" asp-action="Logout">Log out</a>
+    </header>
+
+    <nav>
+        <br />
+        <ul>
+            <li><a asp-area="" method="get" href="/admin/getalluser" asp-controller="Admin" asp-action="GetAllUser">All User View</a></li>
+        </ul>
+        <br />
+        <ul>
+            <li><a asp-area="" href="/admin/addegg" asp-controller="Admin" asp-action="AddEgg">AddEgg</a></li>
+
+        </ul>
+        <br />
+        <ul>
+            <li><a asp-area="" method="get" href="/admin/eggslist" asp-controller="Admin" asp-action="EggsList">All Egg</a></li>
+
+        </ul>
+        <br />
+    </nav>
+</body>
+</html>
