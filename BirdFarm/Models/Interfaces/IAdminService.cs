@@ -18,6 +18,6 @@ namespace BirdFarm.Interfaces
         Task UpdateUser(User user);
 
         Task AddEgg(Egg egg);
-
+        Task UpdateEgg(Egg egg);
     }
 }

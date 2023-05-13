@@ -51,7 +51,11 @@ namespace BirdFarm.Services
 
 		}
 
-        
+        public async Task UpdateEgg(Egg egg)
+        {
+             _farmContext.UpdateRange(egg);
+            await _farmContext.SaveChangesAsync();
+        }
 
         public async Task UpdateUser(User user)
         {

@@ -44,11 +44,17 @@ namespace Notebook.Controllers
         {
          return View( await _userService.GetEggsAsync());
         }
+        [HttpPost]
+        public async Task<IActionResult> SaveEditEgg(Egg egg)
+        {
+            _adminService.UpdateEgg(egg);
+            return RedirectToAction("EggList");
+        }
         [HttpGet]
         public async Task<IActionResult> EggsDeletet(int id)
         {
-            _adminService.EggsDelete(id);
-            return await EggsList();
+           await _adminService.EggsDelete(id);
+           return RedirectToAction("EggList");
         }
         [HttpPost]
         public async Task<IActionResult> AddEgg(Egg egg)
