@@ -22,6 +22,24 @@ namespace Notebook.Controllers
             _adminService = adminService;
             _userService = userService;
         }
+        public IActionResult AddBird()
+        {
+            return View();
+        }
+        public async Task<IActionResult> BirdList()
+        {
+            return View(await _adminService.GetAllBird());
+        }
+        public async Task<IActionResult> SaveBird(Bird bird)
+        {
+           await _adminService.AddBird(bird);
+            return RedirectToAction("EggsList");
+        }
+        public async Task<IActionResult> BirdDeletet(int id)
+        {
+            _adminService.DeleteBird(id);
+            return RedirectToAction("BirdList");
+        }
         [HttpPost]
         public async Task<IActionResult> EditUser(int id)
         {
@@ -40,6 +58,12 @@ namespace Notebook.Controllers
             return View();
         }
         [HttpGet]
+        public async Task<IActionResult> EditEggs(int id)
+        {
+           
+            return View(await _adminService.GetByIdEgg(id));
+        }
+        [HttpGet]
         public async Task<IActionResult> EggsList()
         {
          return View( await _userService.GetEggsAsync());
@@ -47,14 +71,14 @@ namespace Notebook.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveEditEgg(Egg egg)
         {
-            _adminService.UpdateEgg(egg);
-            return RedirectToAction("EggList");
+           await _adminService.UpdateEgg(egg);
+            return RedirectToAction("EggsList");
         }
         [HttpGet]
         public async Task<IActionResult> EggsDeletet(int id)
         {
            await _adminService.EggsDelete(id);
-           return RedirectToAction("EggList");
+            return RedirectToAction("EggsList");
         }
         [HttpPost]
         public async Task<IActionResult> AddEgg(Egg egg)
@@ -63,7 +87,7 @@ namespace Notebook.Controllers
           return View();
         }
         [HttpPost]
-        public async Task<IActionResult> UpdateUser(int id, [Bind("Id,Name,Email,Password,Age,Role")] User user)
+        public async Task<IActionResult> UpdateUser(int id, [Bind("Id,Email,Password,Role")] User user)
         {
             if (id != user.Id)
             {

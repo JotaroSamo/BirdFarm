@@ -16,8 +16,13 @@ namespace BirdFarm.Interfaces
         Task EggsDelete(int id);
         Task<User> GetById(int id);
         Task UpdateUser(User user);
-
+        Task<Egg> GetByIdEgg(int id);
         Task AddEgg(Egg egg);
         Task UpdateEgg(Egg egg);
+        Task AddBird(Bird egg);
+        Task<List<Bird>> GetAllBird();
+        Task UpdateBird(Bird bird);
+        Task DeleteBird(int id);
+        Task<Bird> GetBirdById(int id);
     }
 }

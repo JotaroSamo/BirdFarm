@@ -27,40 +27,40 @@
                 <th>Price</th>
                 <th></th>
                 <th></th>
+               
             </tr>
         </thead>
-        <tbody>
-            @foreach (var egg in Model)
+       
+            @if (Model!=null)
             {
-                <tr>
-                    <td>@egg.EggID</td>
-                    <td>@egg.EggType</td>
-                    <td>@egg.EggColor</td>
-                    <td>@egg.CountEggs</td>
-                    <td>@egg.Price</td>
-                    <td>
-                        <form asp-controller="Admin" asp-action="EggsDeletet" method="get">
-                            <input type="hidden" name="id" value="@egg.EggID" />
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+            <tbody>
+                @foreach (var egg in Model)
+                {
+                    <tr>
+                        <td>@egg.EggID</td>
+                        <td>@egg.EggType</td>
+                        <td>@egg.EggColor</td>
+                        <td>@egg.CountEggs</td>
+                        <td>@egg.Price</td>
+                        <td>
+                            <form asp-controller="Admin" asp-action="EggsDeletet" method="get">
+                                <input type="hidden" name="id" value="@egg.EggID" />
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
 
-                    </td>
-                    <td>
-                        <form asp-controller="Admin" asp-action="EditEgg" method="post">
-                            <input type="hidden" name="id" value="@egg.EggID" />
-                            <button type="submit" class="btn btn-primary">Edit</button>
-                        </form>
-                    </td>
-                   @* <td>
-
-                        <form asp-area="" asp-controller="UserWork" asp-action="AllRecord" method="get">
-                            <input type="hidden" name="UserId" value="@egg.EggID" />
-                            <button type="submit" class="btn btn-primary">List Record</button>
-                        </form>
-                    </td>*@
-                </tr>
-            }
-        </tbody>
+                        </td>
+                        <td>
+                            <form asp-controller="Admin" asp-action="EditEggs" method="get">
+                                <input type="hidden" name="id" value="@egg.EggID" />
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                            </form>
+                        </td>
+                       
+                    </tr>
+                }
+            </tbody>
+                }
+            
     </table>
 </body>
 </html>
