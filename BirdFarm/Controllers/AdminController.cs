@@ -121,7 +121,7 @@ namespace Notebook.Controllers
                 }
             
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (Exception)
             {
               
                 ModelState.AddModelError("", "The user has been updated by another user. Please refresh and try again.");
@@ -147,7 +147,7 @@ namespace Notebook.Controllers
               
                 return View("ViewAllUser", users);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
               
                 throw;

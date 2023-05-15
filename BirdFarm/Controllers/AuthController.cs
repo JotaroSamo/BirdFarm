@@ -48,7 +48,7 @@ namespace BirdFarm.Controllers
 
                 return View(model);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
               
                 throw;
@@ -86,7 +86,7 @@ namespace BirdFarm.Controllers
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(userClaimsIdentity));
                 return RedirectToAction("UserTools", "User");
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                
                 throw;
