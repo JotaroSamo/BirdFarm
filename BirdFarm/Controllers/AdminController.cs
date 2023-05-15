@@ -33,7 +33,7 @@ namespace Notebook.Controllers
         public async Task<IActionResult> SaveBird(Bird bird)
         {
            await _adminService.AddBird(bird);
-            return RedirectToAction("EggsList");
+            return RedirectToAction("BirdList");
         }
         [HttpGet]
         public async Task<IActionResult> BirdDeletet(int id)
