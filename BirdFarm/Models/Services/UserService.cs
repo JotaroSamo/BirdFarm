@@ -37,7 +37,15 @@ namespace BirdFarm.Interfaces
             
         }
 
-       
+        public async Task DeleteCart(int id, int CountEggs, int EggsId)
+        {
+            var cart = await _farmContext.Carts.FirstOrDefaultAsync(c=>c.Id==id);
+            _farmContext.Carts.Remove(cart);
+            var perm = await _farmContext.Eggs.FirstOrDefaultAsync(c => c.EggID == EggsId);
+            perm.CountEggs = perm.CountEggs+CountEggs;
+            _farmContext.Eggs.UpdateRange(perm);
+            await _farmContext.SaveChangesAsync();
+        }
 
         public async Task<User> GetAsync(DtoUser userAuthDto)
         {
@@ -48,6 +56,11 @@ namespace BirdFarm.Interfaces
                 return null;
             }
             return user;
+        }
+
+        public async Task<List<Cart>> GetCart(int id)
+        {
+            return await _farmContext.Carts.Where(c => c.UserId == id).ToListAsync();
         }
 
         public async Task<User> GetCheckAsync(User checkUser)
@@ -64,6 +77,20 @@ namespace BirdFarm.Interfaces
         public async Task<List<Egg>> GetEggsAsync()
         {
            return await _farmContext.Eggs.ToListAsync();
+        }
+
+        public async Task SaveCart(int UserId, int EggId, int count)
+        {
+            Cart cart = new Cart();
+            cart.UserId = UserId;
+            var perm = await _farmContext.Eggs.FirstOrDefaultAsync(c=>c.EggID == EggId);
+            cart.Price = count*perm.Price;
+            cart.EggsId = EggId;
+            cart.CountEggs= count;
+            perm.CountEggs = perm.CountEggs - count;
+            _farmContext.Eggs.UpdateRange(perm);
+            _farmContext.Carts.Add(cart);
+            await _farmContext.SaveChangesAsync();
         }
     }
 }

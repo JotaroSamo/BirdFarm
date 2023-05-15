@@ -1,0 +1,59 @@
+﻿@using BirdFarm.ModelsBD;
+@using Microsoft.AspNetCore.Http;
+@using Microsoft.AspNetCore.Mvc.TagHelpers;
+@model List<Cart>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link href="~/css/Home.css" rel="stylesheet" />
+    <link href="~/css/Table.css" rel="stylesheet" />
+</head>
+<body class="back">
+    <header class="header_up">
+        <a class="logout-button" asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
+        <a asp-area="" asp-controller="User" asp-action="UserTools">Tools</a>
+    </header>
+    <br />
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>UserId</th>
+                <th>EggsId</th>
+                <th>CountEggs</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        @if (Model != null)
+        {
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.UserId</td>
+                        <td>@item.EggsId</td>
+                        <td>@item.CountEggs</td>
+                        <td>@item.Price</td>
+                        <form asp-controller="User" asp-action="Delete" method="get">
+                        <td>
+                            <input type="hidden" name="CountEggs" value="@item.CountEggs" />
+                            <input type="hidden" name="EggsId" value="@item.EggsId" />
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" class="btn btn-primary">Delete</button>
+
+                        </td>
+                        </form>
+                    </tr>
+                }
+            </tbody>
+        }
+
+    </table>
+</body>
+</html>

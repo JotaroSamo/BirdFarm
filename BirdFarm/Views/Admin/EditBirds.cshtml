@@ -1,0 +1,46 @@
+﻿@model BirdFarm.ModelsBD.Bird
+@{
+    ViewData["Title"] = "Edit";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/Home.css" rel="stylesheet" />
+    <link href="~/css/Auth.css" rel="stylesheet" />
+    <title>Edit User</title>
+</head>
+<body class="back">
+    <header class="header_up">
+        <a class="logout-button" asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
+        <a asp-area="" asp-controller="Admin" asp-action="Tools">Tools</a>
+    </header>
+<h2>Edit Bird</h2>
+
+<form asp-action="SaveEditBird" asp-controller="Admin" method="post">
+    <div class="form-group">
+            <input type="hidden" asp-for="BirdID" />
+        <label asp-for="BirdName">Bird Name:</label>
+        <input asp-for="BirdName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="BirdType">Bird Type:</label>
+        <input asp-for="BirdType" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Age">Age:</label>
+        <input asp-for="Age" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Gender">Gender:</label>
+        <input asp-for="Gender" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+
+</body>
+</html>

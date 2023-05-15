@@ -35,10 +35,16 @@ namespace Notebook.Controllers
            await _adminService.AddBird(bird);
             return RedirectToAction("EggsList");
         }
+        [HttpGet]
         public async Task<IActionResult> BirdDeletet(int id)
         {
-            _adminService.DeleteBird(id);
+            await _adminService.DeleteBird(id);
             return RedirectToAction("BirdList");
+        }
+        [HttpGet]
+        public async Task<IActionResult> EditBirds(int id)
+        {
+            return View(await _adminService.GetBirdById(id));
         }
         [HttpPost]
         public async Task<IActionResult> EditUser(int id)
@@ -74,6 +80,12 @@ namespace Notebook.Controllers
            await _adminService.UpdateEgg(egg);
             return RedirectToAction("EggsList");
         }
+        [HttpPost]
+        public async Task<IActionResult> SaveEditBird(Bird bird)
+        {
+            await _adminService.UpdateBird(bird);
+            return RedirectToAction("BirdList");
+        }
         [HttpGet]
         public async Task<IActionResult> EggsDeletet(int id)
         {
@@ -84,7 +96,7 @@ namespace Notebook.Controllers
         public async Task<IActionResult> AddEgg(Egg egg)
         {
           await _adminService.AddEgg(egg);
-          return View();
+            return RedirectToAction("EggsList"); ;
         }
         [HttpPost]
         public async Task<IActionResult> UpdateUser(int id, [Bind("Id,Email,Password,Role")] User user)

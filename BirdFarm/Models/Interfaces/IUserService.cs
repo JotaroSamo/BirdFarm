@@ -12,7 +12,9 @@ namespace BirdFarm.Interfaces
     public interface IUserService
     {
         Task CreateAsync(User userCreateDto);
-
+        Task<List<Cart>> GetCart(int id);
+        Task DeleteCart(int id, int CountEggs, int EggsId);
+        Task SaveCart(int UserId, int EggId, int count);
         Task<User> GetAsync(DtoUser userAuthDto);
 
         Task<User> GetCheckAsync(User checkUser);

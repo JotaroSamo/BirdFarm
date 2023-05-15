@@ -1,0 +1,42 @@
+﻿@{
+	var httpContext = ViewContext.HttpContext;
+	int? userId = httpContext.Session.GetInt32("UserId");
+}
+@{ViewData["Title"] ="Tools";}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link href="~/css/Admin.css" rel="stylesheet" />
+	<link href="~/css/Home.css" rel="stylesheet" />
+	
+	
+</head>
+
+<body class="back">
+	<header class="header_up">
+		<a class="logout-button" asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
+	</header>
+	<nav>
+		<br />
+		<ul>
+			<li><a asp-area="" asp-controller="User" asp-action="ListUserCart">List Cart</a></li>
+		</ul>
+		<br />
+		<ul>
+			<li>
+				<a asp-area="" asp-controller="User" asp-action="ListShop">New Pay</a>
+			</li>
+		</ul>
+		<br />
+		<ul>
+			<li>
+				<form asp-area="" asp-controller="Admin" asp-action="EditUser" method="post">
+					<button type="submit">Profile</button>
+					<input class="abutton" type="hidden" name="id" value="@userId" />
+				</form>
+			</li>
+		</ul>
+	</nav>
+</body>
+</html>

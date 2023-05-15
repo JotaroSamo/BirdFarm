@@ -84,7 +84,7 @@ namespace BirdFarm.Controllers
              
                 var userClaimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(userClaimsIdentity));
-                return RedirectToAction("UserTools", "UserWork");
+                return RedirectToAction("UserTools", "User");
             }
             catch (Exception ex)
             {

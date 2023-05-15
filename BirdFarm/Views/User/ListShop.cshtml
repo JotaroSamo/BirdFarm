@@ -13,7 +13,7 @@
 <body class="back">
     <header class="header_up">
         <a class="logout-button" asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
-        <a asp-area="" asp-controller="Admin" asp-action="Tools">Tools</a>
+        <a asp-area="" asp-controller="User" asp-action="UserTools">Tools</a>
     </header>
     <br />
 
@@ -28,12 +28,12 @@
                 <th>Price</th>
                 <th></th>
                 <th></th>
-               
+
             </tr>
         </thead>
-       
-            @if (Model!=null)
-            {
+
+        @if (Model != null)
+        {
             <tbody>
                 @foreach (var egg in Model)
                 {
@@ -43,25 +43,21 @@
                         <td>@egg.EggColor</td>
                         <td>@egg.CountEggs</td>
                         <td>@egg.Price</td>
+                        <form asp-controller="User" asp-action="Pay" method="get">
+                        <td><input type="text" name="count"/></td>
                         <td>
-                            <form asp-controller="Admin" asp-action="EggsDeletet" method="get">
-                                <input type="hidden" name="id" value="@egg.EggID" />
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
 
+                            <input type="hidden" name="EggId" value="@egg.EggID" />
+                            <input type="hidden" name="CountEggs" value="@egg.CountEggs" />
+                                <button type="submit" class="btn btn-primary">Pay</button>
+                          
                         </td>
-                        <td>
-                            <form asp-controller="Admin" asp-action="EditEggs" method="get">
-                                <input type="hidden" name="id" value="@egg.EggID" />
-                                <button type="submit" class="btn btn-primary">Edit</button>
-                            </form>
-                        </td>
-                       
+                        </form>
                     </tr>
                 }
             </tbody>
-                }
-            
+        }
+
     </table>
 </body>
 </html>
